@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.conquest</groupId>
+    <artifactId>Conquest</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!--
+            Scope "provided" : l'API n'est pas embarquee dans le jar final,
+            elle est fournie par le serveur au runtime. Conquest n'utilise
+            QUE cette API (aucun NMS direct compile en dur) : les quelques
+            fonctionnalites qui necessitent du NMS (ActionBar, fake BossBar)
+            passent par de la reflexion pure a l'execution (voir NmsUtil),
+            pas par une dependance de compilation - c'est ce qui permet au
+            meme jar de tourner sur Spigot/Paper/TacoSpigot/NachoSpigot/
+            PandaSpigot/WindSpigot/FoxSpigot/CarbonSpigot/ImanitySpigot/
+            nSpigot et tout autre fork Bukkit 1.8.8/1.8.9.
+        -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-Xlint:-options</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

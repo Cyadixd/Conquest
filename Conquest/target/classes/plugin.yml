@@ -1,0 +1,23 @@
+name: Conquest
+version: 1.0.0
+main: fr.conquest.ConquestPlugin
+author: Toi
+description: Evenement PvP de controle de zones entre factions
+commands:
+  conquest:
+    description: Commande principale de Conquest
+    usage: /conquest <sous-commande>
+    aliases: [cq]
+permissions:
+  conquest.admin:
+    description: Acces complet aux commandes d'administration Conquest
+    default: op
+  conquest.start:
+    description: Demarrer l'evenement
+    default: op
+  conquest.stop:
+    description: Arreter l'evenement
+    default: op
+  conquest.reload:
+    description: Recharger la configuration
+    default: op
